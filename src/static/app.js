@@ -24,13 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
         let participantsHtml = "";
         if (details.participants.length > 0) {
           participantsHtml = `
-            <p><strong>Inscritos:</strong></p>
+            <div class="participants-title">Inscritos:</div>
             <ul>
-              ${details.participants.map(email => `<li>${email}</li>`).join("")}
+              ${details.participants
+                .map(
+                  email => `
+                    <li>
+                      <span class="avatar">${email[0].toUpperCase()}</span>
+                      <span class="email">${email}</span>
+                    </li>
+                  `
+                )
+                .join("")}
             </ul>
           `;
         } else {
-          participantsHtml = `<p><strong>Inscritos:</strong> Nenhum participante ainda.</p>`;
+          participantsHtml = `<div class="participants-title">Inscritos:</div><p style="color:#888;margin:0 0 0 8px;">Nenhum participante ainda.</p>`;
         }
 
         activityCard.innerHTML = `
